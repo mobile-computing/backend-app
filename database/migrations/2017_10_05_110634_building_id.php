@@ -13,7 +13,7 @@ class BuildingId extends Migration
      */
     public function up()
     {
-        Schema::create('building', function (Blueprint $table) {
+        Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
             $table->json('data');
         });
@@ -26,6 +26,6 @@ class BuildingId extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('building');
+        Schema::dropIfExists('buildings');
     }
 }
