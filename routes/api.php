@@ -23,7 +23,13 @@ Route::get('/map/download', function (Request $request) {
     }
     $building = \App\Building::find($buildingId);
     if ($building) {
-        return response()->json($building->toJson(), 200);
+        return response()->json([
+            'code' => 0,
+            'data' => [
+                'id' => $building->id,
+                'items' => json_decode($building->items, true),
+            ],
+        ], 200);
     } else {
         return response()->json([
             'code' => 1,
