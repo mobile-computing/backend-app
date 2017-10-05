@@ -15,7 +15,7 @@ class BuildingId extends Migration
     {
         Schema::create('buildings', function (Blueprint $table) {
             $table->increments('id');
-            $table->json('data');
+            $table->json('items');
         });
     }
 
