@@ -22,7 +22,7 @@ Route::get('/map/download', function (Request $request) {
         ], 400);
     }
     $building = \App\Building::find($buildingId);
-    if ($building->count()) {
+    if ($building) {
         return response()->json($building->toJson(), 200);
     } else {
         return response()->json([
