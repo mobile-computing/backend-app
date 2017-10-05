@@ -13,6 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/map/download', function (Request $request) {
+    $buildingId = request('building-id', null);
+    if (empty($buildingId)) {
+        return response()->json([
+            'code' => 400,
+            'message' => 'Bad request',
+        ], 400);
+    }
+    $building = \App\Building::find($buildingId);
+    if ($building->count()) {
+        return response()->json($building->toJson(), 200);
+    } else {
+        return response()->json([
+            'code' => 1,
+            'message' => 'Nonexistent building',
+        ], 404);
+    }
 });
